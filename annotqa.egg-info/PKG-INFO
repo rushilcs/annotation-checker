@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: annotqa
+Version: 0.1.0
+Summary: Annotation QA tool with hybrid LLM + deterministic scoring
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: typer>=0.12.0
+Requires-Dist: pydantic>=2.7.0
+Requires-Dist: pyyaml>=6.0.1
+Requires-Dist: openai>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+
+# annotqa
+
+Production-grade Python CLI for annotation quality assurance with hybrid scoring:
+- LLM rubric evaluation (anchored, non-deterministic)
+- Deterministic grammar penalty from Levenshtein edit fraction
+- Deterministic final weighted score
+
+## Install
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+## Commands
+
+### Validate (offline)
+
+```bash
+annotqa validate --input examples/sample.jsonl --rubric rubrics/rubric_v1_abtie.yaml
+```
+
+- No LLM calls
+- Exit code `2` when parse errors exist, otherwise `0`
+
+### Run
+
+```bash
+annotqa run \
+  --input examples/sample.jsonl \
+  --rubric rubrics/rubric_v1_abtie.yaml \
+  --out outputs/results.jsonl \
+  --dry_run
+```
+
+Non-dry-run requires `OPENAI_API_KEY`.
+
+### Summarize
+
+```bash
+annotqa summarize --input outputs/results.jsonl --out outputs/report.json --csv outputs/summary.csv
+```
+
+### Demo Generator
+
+```bash
+annotqa demo --out_dir examples/demo --n 2000 --seed 42 --error_rate 0.35
+```
+
+Writes:
+- `examples/demo/rubric_v1_abtie.yaml`
+- `examples/demo/demo.jsonl`
+- `examples/demo/README.md`
+
+## Architecture Notes
+
+- New annotation formats are supported by adding a new rubric YAML only.
+- Minimal selector engine supports dot-path extraction (`annotation.explanation`, `$.annotation.explanation`).
+- JSONL is streamed line-by-line (no full-file load).
+- LLM outputs use schema-validated structured JSON.
+- Cache key:
+  `sha256(rubric_id, rubric_version, model, normalized.labels, normalized.text)`.
+
+## Test
+
+```bash
+pytest
+```

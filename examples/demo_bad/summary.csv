@@ -1,0 +1,14 @@
+metric,value
+final_score_0_100,52.89200000000001
+section_score_0_100.alignment_with_labels,64.3
+section_score_0_100.clarity_structure,64.24000000000001
+section_score_0_100.comparative_reasoning,58.5
+section_score_0_100.evidence_specificity,45.08
+section_score_0_100.rubric_completeness,32.34
+llm_summary.feedback,"Missing required text: explanation (71); Word count 11 outside [12, 140] (48); Word count 420 outside [12, 140] (48); Word count 8 outside [12, 140] (47); Word count 2 outside [12, 140] (44); Missing required label: fitsPrompt (33); No explanation provided. (19); Explanation prefers A but fitsPrompt and fitsTone labels are B, indicating partial misalignment. (13)"
+llm_summary.reasoning,comparative_reasoning: Clear comparison between A and B. (60); alignment_with_labels: Fully aligned with labels. (45); comparative_reasoning: Clear and complete comparison. (42); rubric_completeness: Does not cover requested dimensions. (38); evidence_specificity: Multiple precise supporting details. (37); alignment_with_labels: Explanation aligns with labels. (36); evidence_specificity: No explanation provided. (35); alignment_with_labels: Mostly aligned with labels. (29)
+score_anchor.0-39,Poor
+score_anchor.40-59,Needs improvement
+score_anchor.60-74,Fair
+score_anchor.75-89,Good
+score_anchor.90-100,Excellent

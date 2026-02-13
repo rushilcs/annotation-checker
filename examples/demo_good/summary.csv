@@ -1,0 +1,14 @@
+metric,value
+final_score_0_100,75.24000000000001
+section_score_0_100.alignment_with_labels,72.8
+section_score_0_100.clarity_structure,88.2
+section_score_0_100.comparative_reasoning,87.20000000000002
+section_score_0_100.evidence_specificity,70.78
+section_score_0_100.rubric_completeness,57.220000000000006
+llm_summary.feedback,"Explanation prefers A but fitsPrompt and fitsTone labels are B, indicating partial misalignment. (39); Explanation preference does not fully align with mixed labels (TIE and A). (16); Explanation prefers A but all preference labels are TIE; this contradicts labels. (16); No clear coverage of requested dimensions due to tie labels. (16); Explanation prefers A but fitsTone label is B, showing partial contradiction. (15); Does not address domain dimension explicitly. (15); Explanation prefers A but fitsPrompt label is B, causing partial misalignment. (15); Explanation prefers A but fitsTone is B, causing partial misalignment. (14)"
+llm_summary.reasoning,comparative_reasoning: Clear comparison between A and B. (92); evidence_specificity: Multiple precise supporting details. (85); clarity_structure: Very clear and well-structured writing. (74); comparative_reasoning: Clear and complete comparison favoring B. (71); clarity_structure: Very clear and coherent. (69); comparative_reasoning: Clear comparison. (64); alignment_with_labels: Fully aligned with labels. (57); comparative_reasoning: Clear and complete comparison. (57)
+score_anchor.0-39,Poor
+score_anchor.40-59,Needs improvement
+score_anchor.60-74,Fair
+score_anchor.75-89,Good
+score_anchor.90-100,Excellent

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "annotqa"
+version = "0.1.0"
+description = "Annotation QA tool with hybrid LLM + deterministic scoring"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "typer>=0.12.0",
+  "pydantic>=2.7.0",
+  "pyyaml>=6.0.1",
+  "openai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+annotqa = "annotqa.cli:app"
+
+[tool.setuptools]
+packages = ["annotqa"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

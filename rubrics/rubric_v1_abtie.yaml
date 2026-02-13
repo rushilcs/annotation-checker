@@ -1,0 +1,82 @@
+rubric_id: rubric_v1_abtie
+version: 1.0.0
+
+input_mapping:
+  labels:
+    aestheticPreference: annotation.aestheticPreference
+    fitsDomain: annotation.fitsDomain
+    fitsPrompt: annotation.fitsPrompt
+    fitsTone: annotation.fitsTone
+  text:
+    explanation: annotation.explanation
+
+label_specs:
+  aestheticPreference:
+    selector: annotation.aestheticPreference
+    required: true
+    allowed: [A, B, TIE]
+  fitsDomain:
+    selector: annotation.fitsDomain
+    required: true
+    allowed: [A, B, TIE]
+  fitsPrompt:
+    selector: annotation.fitsPrompt
+    required: true
+    allowed: [A, B, TIE]
+  fitsTone:
+    selector: annotation.fitsTone
+    required: true
+    allowed: [A, B, TIE]
+
+text_specs:
+  explanation:
+    selector: annotation.explanation
+    required: true
+    min_words: 12
+    max_words: 140
+
+criteria:
+  - id: evidence_specificity
+    description: Explanation cites concrete details supporting the stated preference.
+    max_points: 5
+    anchors:
+      "0": No concrete details.
+      "3": Some specific detail is present.
+      "5": Multiple precise details strongly support the choice.
+  - id: comparative_reasoning
+    description: Explanation compares option A and B with rationale.
+    max_points: 5
+    anchors:
+      "0": No comparison.
+      "3": Partial comparison with weak rationale.
+      "5": Clear and balanced comparison with strong rationale.
+  - id: alignment_with_labels
+    description: Explanation is consistent with selected labels and does not contradict them.
+    max_points: 5
+    anchors:
+      "0": Contradiction with labels.
+      "3": Mostly consistent.
+      "5": Fully consistent.
+  - id: clarity_structure
+    description: Writing is coherent and easy to follow.
+    max_points: 5
+    anchors:
+      "0": Hard to follow.
+      "3": Understandable with minor issues.
+      "5": Clear and well-structured.
+  - id: rubric_completeness
+    description: Covers aesthetic preference, domain fit, prompt fit, and tone fit.
+    max_points: 5
+    anchors:
+      "0": Misses most required aspects.
+      "3": Covers some aspects.
+      "5": Covers all required aspects.
+
+scoring:
+  grammar:
+    penalty_scale: 300
+    penalty_cap: 30
+  final:
+    method: weighted_sum
+    rubric_weight: 0.7
+    grammar_weight: 0.3

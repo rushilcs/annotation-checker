@@ -1,0 +1,89 @@
+rubric_id: rubric_v1_abtie
+version: 1.0.0
+input_mapping:
+  labels:
+    aestheticPreference: annotation.aestheticPreference
+    fitsDomain: annotation.fitsDomain
+    fitsPrompt: annotation.fitsPrompt
+    fitsTone: annotation.fitsTone
+  text:
+    explanation: annotation.explanation
+label_specs:
+  aestheticPreference:
+    selector: annotation.aestheticPreference
+    required: true
+    allowed:
+    - A
+    - B
+    - TIE
+  fitsDomain:
+    selector: annotation.fitsDomain
+    required: true
+    allowed:
+    - A
+    - B
+    - TIE
+  fitsPrompt:
+    selector: annotation.fitsPrompt
+    required: true
+    allowed:
+    - A
+    - B
+    - TIE
+  fitsTone:
+    selector: annotation.fitsTone
+    required: true
+    allowed:
+    - A
+    - B
+    - TIE
+text_specs:
+  explanation:
+    selector: annotation.explanation
+    required: true
+    min_words: 12
+    max_words: 140
+criteria:
+- id: evidence_specificity
+  description: Explanation cites concrete details of the preferred option.
+  max_points: 5
+  anchors:
+    '0': No concrete evidence.
+    '3': Some specific detail.
+    '5': Multiple precise supporting details.
+- id: comparative_reasoning
+  description: Explanation compares A and B with a clear rationale.
+  max_points: 5
+  anchors:
+    '0': No comparison.
+    '3': Partial comparison.
+    '5': Clear and complete comparison.
+- id: alignment_with_labels
+  description: Explanation aligns with declared labels and does not contradict them.
+  max_points: 5
+  anchors:
+    '0': Contradictory.
+    '3': Mostly aligned.
+    '5': Fully aligned.
+- id: clarity_structure
+  description: Writing is readable, coherent, and well-structured.
+  max_points: 5
+  anchors:
+    '0': Unclear.
+    '3': Partially clear.
+    '5': Very clear and structured.
+- id: rubric_completeness
+  description: 'Covers requested dimensions: aesthetics, domain, prompt, and tone.'
+  max_points: 5
+  anchors:
+    '0': Misses most dimensions.
+    '3': Covers some dimensions.
+    '5': Covers all dimensions.
+scoring:
+  grammar:
+    penalty_scale: 300
+    penalty_cap: 30
+  final:
+    method: weighted_sum
+    rubric_weight: 0.7
+    grammar_weight: 0.3
